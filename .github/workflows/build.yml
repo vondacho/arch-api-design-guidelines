@@ -21,6 +21,7 @@ jobs:
         shell: sh
         run: |
           mkdocs build
+        working-directory: .
 
       - name: Deploy to GH pages
         shell: sh
