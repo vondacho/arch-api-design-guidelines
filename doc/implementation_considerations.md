@@ -30,12 +30,14 @@ Examples:
 ## Response codes
 
 Successful response status codes:
+
 - `200` -> OK
 - `201` -> Created
 - `202` -> Accepted (The request has been accepted for processing, but the processing has not been completed. The request might or might not be eventually acted upon, and may be disallowed when processing occurs.)
 - `204` -> No content
 
 Error response status codes:
+
 - `400` -> bad parameters provided by the user. Failed validation, or the resource doesn't exist
 - `401` -> Unauthorized. Ex: not authenticated, invalid auth
 - `403` -> Forbidden. Ex: you don't have access to this resource

@@ -7,6 +7,7 @@ docs_dir: doc
 nav:
   - Home: index.md
   - Reference guidelines: reference_guidelines.md
+  - Implementation considerations: implementation_considerations.md
 
 plugins:
   - search
