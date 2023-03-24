@@ -1,0 +1,21 @@
+site_name: API design guidelines
+site_url: 
+repo_url: https://github.com/vondacho/arch-api-design-guidelines/
+repo_name: GitHub repository
+docs_dir: doc
+
+nav:
+  - Home: index.md
+  - Reference guidelines: reference_guidelines.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: True
+
+theme: material
+
+extra_css:
+  - stylesheets/colors.css
