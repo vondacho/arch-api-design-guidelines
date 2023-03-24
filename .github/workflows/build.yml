@@ -9,22 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-
-      - shell: bash
-        run: |
-          pip install mkdocs mkdocs-material
-
-      - name: Generate web site
-        shell: sh
-        run: |
-          mkdocs build
-        working-directory: .
-
       - name: Deploy to GH pages
-        shell: sh
-        run: |
-          mkdocs gh-deploy --force -m "update site"
-        working-directory: .
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: ./.github/actions/mkdocs-publish
