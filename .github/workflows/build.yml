@@ -1,0 +1,29 @@
+name: build
+
+on:
+  workflow_dispatch: # Allow to manually trigger the pipeline
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - shell: bash
+        run: |
+          pip install mkdocs mkdocs-material
+
+      - name: Generate web site
+        shell: sh
+        run: |
+          mkdocs build
+
+      - name: Deploy to GH pages
+        shell: sh
+        run: |
+          mkdocs gh-deploy --force -m "update site"
+        working-directory: .
