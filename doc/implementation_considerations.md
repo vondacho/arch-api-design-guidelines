@@ -46,7 +46,6 @@ Error response status codes:
 - `503` -> Service Unavailable
 - `504` -> Gateway timeout
 
-
 ## Error responses
 
 The [RFC-7807](https://www.rfc-editor.org/rfc/rfc7807) specifies the HTTP header and the body of the error response.

@@ -1,37 +1,44 @@
-# Access to one resource
-
 ## Standards
 
-**Use nouns not verbs.**
+**Use nouns not verbs**
 
-* GET /clients/1
-* POST /clients
-* PATCH /accounts/1
-* PUT /orders/1
-* DELETE /addresses/1
+* get `GET /clients/1dbd456aa-c129-4904-a44b-f115a6e851a3`
+* list `GET /clients`
+* create `POST /clients`
+* update `PATCH /accounts/c47a0e82-e956-437d-8801-5d21a4f1b7f0`
+* replace`PUT /orders/e7c07022-f583-4245-80a8-f20222e55e46`
+* remove `DELETE /addresses/0659c040-1a73-4437-bf0a-86c33e44ce64`
 
-**Use plurals to manage both collection and instance resources.**
+**Use plurals to manage both collection and instance resources**
 
-* Collection: /users
-* Instance: /users/007
+* Collection: `/users`
+* Instance: `/users/johndoe`
 
-**Use hierarchical URLs to imply structure (aggregation or composition).**
+**Use hierarchical URLs to imply structure (aggregation or composition)**
 
-GET /orders/123/products/1
+`GET /orders/e7c07022-f583-4245-80a8-f20222e55e46/products/2d2d6af5-e37c-408b-981e-f834bf4c162e`
 
-## Samples
+**Use business unique identifiers or opaque and hard to guess ones**
 
-The investment proposal resource identified by 123
+Do not expose a database primary key as identifier but a logical unique one.  
 
-`GET /investment-proposals/123`
+`/organisations/Lumberjacks`
+`/citizens/756-1234-4321-01`
+`/clients/1dbd456aa-c129-4904-a44b-f115a6e851a3`
 
-The user resource identified by vondacho inside the organisation resource identified by Lumberjacks
+# Access to one resource
 
-`GET /organisations/Lumberjacks/users/ovondach`
+The investment proposal resource identified by 5558fba8-104f-464a-a2d2-76837a1895a6
 
-The one default strategy resource attached to the portfolio resource identified by 123
+`GET /investment-proposals/5558fba8-104f-464a-a2d2-76837a1895a6`
 
-`GET /portfolios/123/default-strategy`
+The user resource identified by johndoe inside the organisation resource identified by Lumberjacks
+
+`GET /organisations/Lumberjacks/users/johndoe`
+
+The one default strategy resource attached to the portfolio resource identified by 0c92d1b7-04f4-48ab-9333-83ec916b08a6
+
+`GET /portfolios/0c92d1b7-04f4-48ab-9333-83ec916b08a6/default-strategy`
 
 The singleton user information resource
 
@@ -43,27 +50,28 @@ All the organisations
 
 `GET /organisations`
 
-A list of identified organisations: 1,2,3
+A list of identified organisations: Lumberjacks,Lions
 
-`GET /organisations?id=1&id=2&id=3`
+`GET /organisations?id=Lumberjacks&id=Lions`
 
 All the organisations with name `lumb`
 
 `GET /organisations?name=lumb`
 
-The users of the organisation `lumberjacks`
+The users of the organisation `Lumberjacks`
 
-`GET /organisations/lumberjacks/users`
+`GET /organisations/Lumberjacks/users`
 
 The users of all organisations with first name `doe` and last name `doe`
 
+`GET /organisations/*/users?firstName=john&lastName=doe`
 `GET /organisations/users?firstName=john&lastName=doe`
 
 # Access to some fields (projection)
 
-Name, tags, and partner of the users of the organisation `lumberjacks`
+Name, tags, and partner of the users of the organisation `Lumberjacks`
 
-`GET /organisations/lumberjacks?fields=name,tags,partner`
+`GET /organisations/Lumberjacks?fields=name,tags,partner`
 
 List all the organisations with all their attributes
 
