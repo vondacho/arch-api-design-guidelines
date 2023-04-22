@@ -1,4 +1,4 @@
-## Standards
+# Standards
 
 **Use nouns not verbs**
 
