@@ -1,0 +1,719 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://vondacho.github.io/arch-api-design-guidelines/reference_guidelines/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../implementation_considerations/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+    
+    
+      
+        <title>Reference guidelines - API design guidelines</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/colors.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference-guidelines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="API design guidelines" class="md-header__button md-logo" aria-label="API design guidelines" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            API design guidelines
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference guidelines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/vondacho/arch-api-design-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub repository
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="API design guidelines" class="md-nav__button md-logo" aria-label="API design guidelines" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    API design guidelines
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/vondacho/arch-api-design-guidelines/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub repository
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Reference guidelines
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Reference guidelines
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-criteria" class="md-nav__link">
+    API design criteria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-principles" class="md-nav__link">
+    API design principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-patterns" class="md-nav__link">
+    API design patterns
+  </a>
+  
+    <nav class="md-nav" aria-label="API design patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementation_considerations/" class="md-nav__link">
+        Implementation considerations
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-criteria" class="md-nav__link">
+    API design criteria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-principles" class="md-nav__link">
+    API design principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-design-patterns" class="md-nav__link">
+    API design patterns
+  </a>
+  
+    <nav class="md-nav" aria-label="API design patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="reference-guidelines">Reference guidelines<a class="headerlink" href="#reference-guidelines" title="Permanent link">&para;</a></h1>
+<p>Status: <strong>DRAFT</strong></p>
+<h2 id="api-design-criteria">API design criteria<a class="headerlink" href="#api-design-criteria" title="Permanent link">&para;</a></h2>
+<p>What does make a good web API? A good API has to provide some functionality that users want to use programmatically. Here is a set of quality criteria.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AQC-1</td>
+<td>Simplicity</td>
+<td>The API must expose the functionality that users want in the most straightforward way possible; To keep the most frequent scenarios easy and simple; To make the common case awesome and the advanced case possible.</td>
+</tr>
+<tr>
+<td>AQC-2</td>
+<td>Expressive</td>
+<td>The API must allow the users to express what they want to do; The functionaly supported by the API must be easy to be accessed by the users.</td>
+</tr>
+<tr>
+<td>AQC-3</td>
+<td>Predictability</td>
+<td>The API must rely on repeated, consistently applied, predictable patterns that are easier and faster to learn.</td>
+</tr>
+<tr>
+<td>AQC-4</td>
+<td>Operational</td>
+<td>The API must do what the users actually want to do.</td>
+</tr>
+<tr>
+<td>AQC-5</td>
+<td>Sustainability</td>
+<td>The API must rely on solid concepts mainly related to the domain; APIs are generally very rigid and therefore not easy to change.</td>
+</tr>
+<tr>
+<td>AQC-6</td>
+<td>Consistency</td>
+<td>The API must stick with one set of naming conventions, patterns and principles.</td>
+</tr>
+</tbody>
+</table>
+<p>These quality criteria are supported by a set of standard design principles and standard design patterns.</p>
+<h2 id="api-design-principles">API design principles<a class="headerlink" href="#api-design-principles" title="Permanent link">&para;</a></h2>
+<p>A design principle is a standard design rule or guideline that has to be applied consistently. It aims to guide the designer towards building a good API.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AP-1</td>
+<td>Expressive naming</td>
+<td>A name must clearly convey the thing that it’s naming.</td>
+</tr>
+<tr>
+<td>AP-2</td>
+<td>Simple naming</td>
+<td>A name should not be excessively long nor oversimplified either; Each additional part of a name must add value to justify its presence.</td>
+</tr>
+<tr>
+<td>AP-3</td>
+<td>Predictable naming</td>
+<td>The same name should be used to represent the same thing and different names to represent different things; To allow users of the API to learn one name and continue building on that knowledge; To choose a naming design and stick to it.</td>
+</tr>
+<tr>
+<td>AP-4</td>
+<td>Naming language</td>
+<td>The maximum interoperability across the world; English language concepts should be used and common American-style spellings should generally be preferred; To choose one language and stick to it.</td>
+</tr>
+<tr>
+<td>AP-5</td>
+<td>Naming grammar</td>
+<td>To use imperative actions, to avoid prepositions, and to use pluralization for naming collection name of a bunch of REST resources; To choose one grammar and stick to it.</td>
+</tr>
+<tr>
+<td>AP-6</td>
+<td>Naming syntax</td>
+<td>URL names take on kebab case and field names take on camel case; To choose one syntax and stick to it.</td>
+</tr>
+<tr>
+<td>AP-7</td>
+<td>Naming terminology</td>
+<td>To reflect the domain language and model on the API language and model or resource layout.</td>
+</tr>
+<tr>
+<td>AP-8</td>
+<td>Contextual naming</td>
+<td>The naming is specific to one domain language and model.</td>
+</tr>
+<tr>
+<td>AP-9</td>
+<td>Resource</td>
+<td>One separate resource for one concept, if it is needed to atomically interact with that concept.</td>
+</tr>
+<tr>
+<td>AP-10</td>
+<td>Resource relationship</td>
+<td>To only store relationships if they provide important functionality to the API; To avoid overly deep hierarchical relationships.</td>
+</tr>
+<tr>
+<td>AP-11</td>
+<td>Typing</td>
+<td>To think in terms of the data types offered by the chosen serialization format. To ensure types are documented well enough so that clients are never surprised by their behavior.</td>
+</tr>
+<tr>
+<td>AP-12</td>
+<td>Missing values</td>
+<td></td>
+</tr>
+<tr>
+<td>AP-13</td>
+<td>Default values</td>
+<td></td>
+</tr>
+<tr>
+<td>AP-14</td>
+<td>Less is more</td>
+<td>To expose a minimal set of attributes to avoid sustainable coupling by the clients</td>
+</tr>
+<tr>
+<td>AP-15</td>
+<td>Hide your internals</td>
+<td>To not expose the technical implementation details to the outside</td>
+</tr>
+</tbody>
+</table>
+<h2 id="api-design-patterns">API design patterns<a class="headerlink" href="#api-design-patterns" title="Permanent link">&para;</a></h2>
+<p>A design pattern is a standard, well-known, approved, reusable, and adaptable piece of design. It acts as a blueprint for solving similarly structured problems and focuses on a structural or a behavioural aspect. Finally, design patterns help minimize the need for large structural changes.</p>
+<h3 id="rest">REST<a class="headerlink" href="#rest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../apat-1-resource-identification/">APAT-1</a></td>
+<td>Resource identification</td>
+<td>How to identify resources in an API</td>
+</tr>
+<tr>
+<td>APAT-2</td>
+<td>Standard methods</td>
+<td>The set of standard methods for use in resource-oriented APIs</td>
+</tr>
+<tr>
+<td>APAT-3</td>
+<td>Partial updates and retrievals</td>
+<td>How to interact with portions of resources</td>
+</tr>
+<tr>
+<td>APAT-4</td>
+<td>Custom methods</td>
+<td>Using custom (non-standard) methods in resource-oriented APIs</td>
+</tr>
+<tr>
+<td>APAT-5</td>
+<td>Association resources</td>
+<td>How to manage many-to-many relationships with metadata</td>
+</tr>
+<tr>
+<td>APAT-6</td>
+<td>Long-running</td>
+<td>How to handle methods that are not instantaneous</td>
+</tr>
+<tr>
+<td>APAT-7</td>
+<td>Rerunnable jobs</td>
+<td>Running repeated custom functionality in an API</td>
+</tr>
+<tr>
+<td>APAT-8</td>
+<td>Cross references</td>
+<td>How to reference other resources in an API</td>
+</tr>
+<tr>
+<td>APAT-9</td>
+<td>Association resources</td>
+<td>How to manage many-to-many relationships with metadata</td>
+</tr>
+<tr>
+<td>APAT-10</td>
+<td>Add and remove custom methods</td>
+<td>How to manage many-to-many relationships without metadata</td>
+</tr>
+<tr>
+<td>APAT-11</td>
+<td>Polymorphism</td>
+<td>Designing resources with dynamically-typed attributes</td>
+</tr>
+<tr>
+<td>APAT-12</td>
+<td>Copy and move</td>
+<td>Duplicating and relocating resources in an API</td>
+</tr>
+<tr>
+<td>APAT-13</td>
+<td>Batch operations</td>
+<td>Extending methods to apply to groups of resources atomically</td>
+</tr>
+<tr>
+<td>APAT-14</td>
+<td>Criteria-based deletion</td>
+<td>Deleting multiple resources based on a set of filter criteria</td>
+</tr>
+<tr>
+<td>APAT-15</td>
+<td>Anonymous writes</td>
+<td>Ingesting unaddressable data into an API</td>
+</tr>
+<tr>
+<td>APAT-16</td>
+<td>Pagination</td>
+<td>Consuming large amounts of data in bite-sized chunks</td>
+</tr>
+<tr>
+<td>APAT-17</td>
+<td>Filtering</td>
+<td>Limiting result sets according to a user-specified filter</td>
+</tr>
+<tr>
+<td>APAT-18</td>
+<td>Importing and exporting</td>
+<td>Moving data into or out of an API by interacting directly with a storage system</td>
+</tr>
+<tr>
+<td>APAT-19</td>
+<td>Versioning and compatibility</td>
+<td>Defining compatibility and strategies for versioning APIs</td>
+</tr>
+<tr>
+<td>APAT-20</td>
+<td>Soft deletion</td>
+<td>Moving resources to the “API recycle bin”</td>
+</tr>
+<tr>
+<td>APAT-21</td>
+<td>Request deduplication</td>
+<td>Preventing duplicate work due to network interruptions in APIs</td>
+</tr>
+<tr>
+<td>APAT-22</td>
+<td>Request validation</td>
+<td>Allowing API methods to be called in “safe mode”</td>
+</tr>
+<tr>
+<td>APAT-23</td>
+<td>Resource revisions</td>
+<td>Tracking resource change history</td>
+</tr>
+<tr>
+<td>APAT-24</td>
+<td>Request retrial</td>
+<td>Algorithms for safely retrying API requests</td>
+</tr>
+<tr>
+<td>APAT-25</td>
+<td>Request authentication</td>
+<td>Verifying that requests are authentic and untampered with</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>

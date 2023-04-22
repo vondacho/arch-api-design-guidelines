@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/apat-1-resource-identification/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/implementation_considerations/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/process_guidelines/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/reference_guidelines/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://vondacho.github.io/arch-api-design-guidelines/usecase_guidelines/</loc>
+         <lastmod>2023-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
